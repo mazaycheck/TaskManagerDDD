@@ -1,0 +1,61 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/suprunoleg/Desktop/TaskManager/TaskManagerUserMicroservice/UserService.Messages/UserService.Messages.csproj": {}
+  },
+  "projects": {
+    "/Users/suprunoleg/Desktop/TaskManager/TaskManagerUserMicroservice/UserService.Messages/UserService.Messages.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/suprunoleg/Desktop/TaskManager/TaskManagerUserMicroservice/UserService.Messages/UserService.Messages.csproj",
+        "projectName": "UserService.Messages",
+        "projectPath": "/Users/suprunoleg/Desktop/TaskManager/TaskManagerUserMicroservice/UserService.Messages/UserService.Messages.csproj",
+        "packagesPath": "/Users/suprunoleg/.nuget/packages/",
+        "outputPath": "/Users/suprunoleg/Desktop/TaskManager/TaskManagerUserMicroservice/UserService.Messages/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/suprunoleg/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
