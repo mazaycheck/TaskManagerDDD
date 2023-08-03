@@ -6,4 +6,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="ValueObjects\" />
+    <None Remove="DomainServices\" />
+    <None Remove="DomainEvents\" />
+    <None Remove="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ValueObjects\" />
+    <Folder Include="DomainServices\" />
+    <Folder Include="DomainEvents\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
 </Project>

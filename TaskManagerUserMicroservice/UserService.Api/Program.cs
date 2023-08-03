@@ -20,6 +20,7 @@ builder.Services.AddDbContext<UserDbContext>(options =>
 builder.Services.AddIdentity<UserDbModel, RoleDbModel>()
     .AddEntityFrameworkStores<UserDbContext>();
 
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 var app = builder.Build();
 
 
