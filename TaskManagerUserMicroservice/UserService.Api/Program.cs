@@ -1,7 +1,10 @@
 ﻿using System.Configuration;
 using Microsoft.EntityFrameworkCore;
+using UserService.Application;
+using UserService.Application.Services;
 using UserService.Data;
 using UserService.Data.Models;
+using UserService.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,10 +20,18 @@ builder.Services.AddDbContext<UserDbContext>(options =>
     options.UseMySQL(connectionString: connectionString);
 });
 
-builder.Services.AddIdentity<UserDbModel, RoleDbModel>()
+builder.Services.AddIdentity<UserDbModel, RoleDbModel>(o =>
+{
+    o.User.RequireUniqueEmail = true;
+    o.Password.RequiredLength = 5;
+} )
     .AddEntityFrameworkStores<UserDbContext>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserManagementService, AspNetCoreIdentityService>();
+builder.Services.AddScoped<IUserService, UserAppService>();
+
+
 var app = builder.Build();
 
 

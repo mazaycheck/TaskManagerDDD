@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using UserService.Application;
 using UserService.Data;
 using UserService.Data.Models;
 
@@ -7,17 +8,19 @@ namespace UserService.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class UsersController : ControllerBase
+public class UserController : ControllerBase
 {
 
-    public UsersController(UserDbContext userDbContext, ILogger<UsersController> logger, UserManager<UserDbModel> userManager)
+    public UserController(UserDbContext userDbContext, ILogger<UserController> logger, IUserService userService)
     {
         this.userDbContext = userDbContext;
+        this.userService = userService;
         this.userManager = userManager;
     }
 
-    private readonly ILogger<UsersController> _logger;
+    private readonly ILogger<UserController> _logger;
     private readonly UserDbContext userDbContext;
+    private readonly IUserService userService;
     private readonly UserManager<UserDbModel> userManager;
 
     [HttpGet(Name = "GetUsers")]
@@ -38,6 +41,21 @@ public class UsersController : ControllerBase
             UserName = user.Name,
             DOB = user.DOB
         }, user.Password);
+    }
+
+    [HttpPost(Name = "AuthUser")]
+    public async Task<IActionResult> AuthUser([FromBody] UserCreateDto user)
+    {
+        var result = await userService.AuthenticateUserAsync(user.Email, user.Password);
+
+        if (result)
+        {
+            return Ok("Logged in.");
+        }
+        else
+        {
+            return Unauthorized("Wrong credentials!");
+        }
     }
 }
 
