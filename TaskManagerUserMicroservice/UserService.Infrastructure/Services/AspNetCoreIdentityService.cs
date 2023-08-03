@@ -17,9 +17,9 @@ namespace UserService.Infrastructure.Services
             this.signInManager = signInManager;
         }
 
-        public async Task<bool> AuthenticateUserAsync(string username, string password)
+        public async Task<bool> AuthenticateUserAsync(string email, string password)
         {
-            var user = await userManager.FindByEmailAsync(username);
+            var user = await userManager.FindByEmailAsync(email);
             var result = await signInManager.PasswordSignInAsync(user, password, false, true);
 
             return result.Succeeded;

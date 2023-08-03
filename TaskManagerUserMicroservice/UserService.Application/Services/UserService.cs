@@ -15,9 +15,9 @@ namespace UserService.Infrastructure.Services
             this.userManagementService = userManagementService;
         }
 
-        public Task<bool> AuthenticateUserAsync(string username, string password)
+        public Task<bool> AuthenticateUserAsync(string email, string password)
         {
-            return userManagementService.AuthenticateUserAsync(username, password);
+            return userManagementService.AuthenticateUserAsync(email, password);
         }
 
         public Task<User> GetUserByEmailAsync(string email)

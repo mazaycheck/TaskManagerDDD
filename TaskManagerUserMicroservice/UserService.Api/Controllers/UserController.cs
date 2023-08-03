@@ -15,15 +15,13 @@ public class UserController : ControllerBase
     {
         this.userDbContext = userDbContext;
         this.userService = userService;
-        this.userManager = userManager;
     }
 
     private readonly ILogger<UserController> _logger;
     private readonly UserDbContext userDbContext;
     private readonly IUserService userService;
-    private readonly UserManager<UserDbModel> userManager;
 
-    [HttpGet(Name = "GetUsers")]
+    [HttpGet("all")]
     public IEnumerable<string> Get()
     {
         var users = userDbContext.Users.ToList();
@@ -32,18 +30,13 @@ public class UserController : ControllerBase
 
     }
 
-    [HttpPost(Name = "CreateUser")]
+    [HttpPost("create")]
     public async Task CreateUser([FromBody] UserCreateDto user)
     {
-        var result = await userManager.CreateAsync(new UserDbModel()
-        {
-            Email = user.Email,
-            UserName = user.Name,
-            DOB = user.DOB
-        }, user.Password);
+        var result = await userService.RegisterUserAsync(user.Name, user.Email, user.Password);
     }
 
-    [HttpPost(Name = "AuthUser")]
+    [HttpPost("auth")]
     public async Task<IActionResult> AuthUser([FromBody] UserCreateDto user)
     {
         var result = await userService.AuthenticateUserAsync(user.Email, user.Password);
